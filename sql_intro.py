@@ -66,6 +66,15 @@ def show_all_products(cursor):
         print_product(product)
 
 
+def get_int_input(prompt):
+    try:
+        number = int(input(prompt))
+        return number
+    except ValueError:
+        print("Please enter a valid number")
+        return None
+
+
 def show_products_by_category(cursor, category):
     cursor.execute("""
     SELECT id, title, price, category
@@ -359,26 +368,26 @@ def show_products_sorted_by_category_and_price(cursor):
 
 def add_product(connection, cursor):
     title = input("Enter title: ").strip()
-    price = input("Enter price: ").strip()
-    category = input("Enter category: ").strip().capitalize()
 
     if not title:
         print("Title cannot be empty")
         return
+    
+    price = get_int_input("Enter price: ")
 
-    if not category:
-        print("Category cannot be empty")
-        return
-
-    try:
-        price = int(price)
-    except ValueError:
-        print("Price must be a number")
+    if price is None:
         return
 
     if price <= 0:
         print("Price must be greater than zero")
         return
+
+    category = input("Enter category: ").strip().capitalize()
+
+    if not category:
+        print("Category cannot be empty")
+        return
+
 
     cursor.execute("""
     INSERT INTO products (title, price, category)
@@ -391,12 +400,9 @@ def add_product(connection, cursor):
 
 
 def delete_product(connection, cursor):
-    product_id = input("Enter product id: ").strip()
+    product_id = get_int_input("Enter product id: ")
 
-    try:
-        product_id = int(product_id)
-    except ValueError:
-        print("Product id must be a number")
+    if product_id is None:
         return
 
     cursor.execute("""
