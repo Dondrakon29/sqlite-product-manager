@@ -24,6 +24,7 @@ def show_menu():
     print("19 - Show products sorted by category and price")
     print("20 - Add product")
     print("21 - Delete product")
+    print("22 - Update product price")
     print("0 - Exit")
 
 
@@ -83,6 +84,36 @@ def get_non_empty_text(prompt, error_message):
         return None
     
     return text
+
+
+def update_product_price(connection, cursor):
+    product_id = get_int_input("Enter product id: ")
+
+    if product_id is None:
+        return
+    
+    new_price = get_int_input("Enter new price: ")
+
+    if new_price is None:
+        return
+    
+    if new_price <= 0:
+        print("Price must be greater than zero")
+        return
+    
+    cursor.execute("""
+    UPDATE products
+    SET price = ?
+    WHERE id = ?;
+    """, (new_price, product_id))
+
+    connection.commit()
+
+    if cursor.rowcount == 0:
+        print("Product not found")
+        return
+    
+    print("Product price updated successfully")
 
 
 def show_products_by_category(cursor, category):
@@ -578,7 +609,10 @@ def run_app(connection, cursor):
             add_product(connection, cursor)
 
         elif choice == "21":
-            delete_product(connection, cursor)                  
+            delete_product(connection, cursor)
+
+        elif choice == "22":
+            update_product_price(connection, cursor)                          
 
         elif choice == "0":
             print("Goodbye!")

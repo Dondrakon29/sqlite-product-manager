@@ -30,6 +30,7 @@ The project allows you to store products in a local SQLite database, search and 
 - Delete product by id
 - Save data between program runs
 - Reusable helper functions for validating integer and text input
+- Update product price by ID
 
 ## Technologies
 
@@ -68,6 +69,8 @@ The project allows you to store products in a local SQLite database, search and 
 - Writing reusable helper functions
 - Validating user input
 - Refactoring repeated code
+- UPDATE
+- CRUD operations
 
 ## How to run
 
@@ -113,6 +116,7 @@ python sql_intro.py
 19 - Show products sorted by category and price
 20 - Add product
 21 - Delete product
+22 - Update product price
 0 - Exit
 ```
 
