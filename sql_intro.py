@@ -25,6 +25,7 @@ def show_menu():
     print("20 - Add product")
     print("21 - Delete product")
     print("22 - Update product price")
+    print("23 - Update product category")
     print("0 - Exit")
 
 
@@ -114,6 +115,35 @@ def update_product_price(connection, cursor):
         return
     
     print("Product price updated successfully")
+
+
+def update_product_category(connection, cursor):
+    product_id = get_int_input("Enter product id: ")
+
+    if product_id is None:
+        return
+    
+    new_category = get_non_empty_text("Enter new category: ", "Category cannot be empty")
+
+    if new_category is None:
+        return
+    
+    new_category = new_category.capitalize()
+    
+    cursor.execute("""
+    UPDATE products
+    SET category = ?
+    WHERE id = ?;
+    """, (new_category, product_id))
+
+    connection.commit()
+
+    if cursor.rowcount == 0:
+        print("Product not found")
+        return
+    
+    print("Product category updated successfully")
+
 
 
 def show_products_by_category(cursor, category):
@@ -612,7 +642,10 @@ def run_app(connection, cursor):
             delete_product(connection, cursor)
 
         elif choice == "22":
-            update_product_price(connection, cursor)                          
+            update_product_price(connection, cursor)
+
+        elif choice == "23":
+            update_product_category(connection, cursor)                              
 
         elif choice == "0":
             print("Goodbye!")
