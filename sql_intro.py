@@ -75,6 +75,16 @@ def get_int_input(prompt):
         return None
 
 
+def get_non_empty_text(prompt, error_message):
+    text = input(prompt).strip()
+
+    if not text:
+        print(error_message)
+        return None
+    
+    return text
+
+
 def show_products_by_category(cursor, category):
     cursor.execute("""
     SELECT id, title, price, category
@@ -367,10 +377,9 @@ def show_products_sorted_by_category_and_price(cursor):
         print_product(product)
 
 def add_product(connection, cursor):
-    title = input("Enter title: ").strip()
+    title = get_non_empty_text("Enter title: ", "Title cannot be empty")
 
-    if not title:
-        print("Title cannot be empty")
+    if title is None:
         return
     
     price = get_int_input("Enter price: ")
@@ -382,12 +391,12 @@ def add_product(connection, cursor):
         print("Price must be greater than zero")
         return
 
-    category = input("Enter category: ").strip().capitalize()
+    category = get_non_empty_text("Enter category: ", "Category cannot be empty")
 
-    if not category:
-        print("Category cannot be empty")
+    if category is None:
         return
-
+    
+    category = category.capitalize()
 
     cursor.execute("""
     INSERT INTO products (title, price, category)
