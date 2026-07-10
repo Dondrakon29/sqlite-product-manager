@@ -29,6 +29,7 @@ The project allows you to store products in a local SQLite database, search and 
 - Add new product
 - Delete product by id
 - Save data between program runs
+- Reusable helper functions for validating integer and text input
 
 ## Technologies
 
@@ -64,6 +65,9 @@ The project allows you to store products in a local SQLite database, search and 
 - Handling incorrect number input with `try/except`
 - Building a console menu
 - Splitting code into functions
+- Writing reusable helper functions
+- Validating user input
+- Refactoring repeated code
 
 ## How to run
 
