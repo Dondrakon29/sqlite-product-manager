@@ -642,28 +642,25 @@ def run_app(connection, cursor):
             search_product_by_title(cursor, title)
 
         elif choice == "14":
-            title_part = input("Enter title part: ").strip()
+            title_part = get_non_empty_text("Enter title part: ", "Title part cannot be empty")
 
-            if not title_part:
-                print("Title part cannot be empty")
+            if title_part is None:
                 continue
             
             search_products_by_title_part(cursor, title_part)
 
         elif choice == "15":
-            category_part = input("Enter category part: ").strip()
+            category_part = get_non_empty_text("Enter category part: ", "Category part cannot be empty")
 
-            if not category_part:
-                print("Category part cannot be empty")
+            if category_part is None:
                 continue
             
             search_products_by_category_part(cursor, category_part)
 
         elif choice == "16":
-            search_text = input("Enter search text: ").strip()
+            search_text = get_non_empty_text("Enter search text: ", "Search text cannot be empty")
 
-            if not search_text:
-                print("Search text cannot be empty")
+            if search_text is None:
                 continue
             
             search_products(cursor, search_text)
