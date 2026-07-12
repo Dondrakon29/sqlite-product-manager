@@ -32,6 +32,7 @@ The project allows you to store products in a local SQLite database, search and 
 - Reusable helper functions for validating integer and text input
 - Update product price by ID
 - Update product category by ID
+- Update product title by ID
 
 ## Technologies
 
@@ -120,6 +121,7 @@ python sql_intro.py
 21 - Delete product
 22 - Update product price
 23 - Update product category
+24 - Update product title
 0 - Exit
 ```
 
