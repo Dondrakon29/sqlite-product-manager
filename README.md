@@ -119,9 +119,7 @@ python sql_intro.py
 19 - Show products sorted by category and price
 20 - Add product
 21 - Delete product
-22 - Update product price
-23 - Update product category
-24 - Update product title
+22 - Update product
 0 - Exit
 ```
 

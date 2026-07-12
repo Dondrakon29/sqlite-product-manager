@@ -24,9 +24,7 @@ def show_menu():
     print("19 - Show products sorted by category and price")
     print("20 - Add product")
     print("21 - Delete product")
-    print("22 - Update product price")
-    print("23 - Update product category")
-    print("24 - Update product title")
+    print("22 - Update product")
     print("0 - Exit")
 
 
@@ -171,6 +169,29 @@ def update_product_title(connection, cursor):
     
     print("Product title updated successfully")
 
+
+def update_product(connection, cursor):
+    print("1 - Update title")
+    print("2 - Update price")
+    print("3 - Update category")
+    print("0 - Back")
+
+    choice = input("Choose option: ")
+
+    if choice == "1":
+        update_product_title(connection, cursor)
+
+    elif choice == "2":
+        update_product_price(connection, cursor)
+
+    elif choice == "3":
+        update_product_category(connection, cursor)
+
+    elif choice == "0":
+        return
+
+    else:
+        print("Wrong choice")            
 
 
 def show_products_by_category(cursor, category):
@@ -569,12 +590,9 @@ def run_app(connection, cursor):
             show_expensive_products(cursor)
 
         elif choice == "5":
-            min_price = input("Enter min price: ").strip()
+            min_price = get_int_input("Enter min price: ")
 
-            try:
-                min_price = int(min_price)
-            except ValueError:
-                print("Price must be a number")
+            if min_price is None:
                 continue
 
             show_products_by_min_price(cursor, min_price)
@@ -595,12 +613,9 @@ def run_app(connection, cursor):
             show_total_price(cursor)
 
         elif choice == "11":
-            max_price = input("Enter max price: ").strip()
+            max_price = get_int_input("Enter max price: ")
 
-            try:
-                max_price = int(max_price)
-            except ValueError:
-                print("Price must be a number")
+            if max_price is None:
                 continue
 
             show_products_by_max_price(cursor, max_price)
@@ -669,13 +684,7 @@ def run_app(connection, cursor):
             delete_product(connection, cursor)
 
         elif choice == "22":
-            update_product_price(connection, cursor)
-
-        elif choice == "23":
-            update_product_category(connection, cursor)
-
-        elif choice == "24":
-            update_product_title(connection, cursor)                                  
+            update_product(connection, cursor)                                
 
         elif choice == "0":
             print("Goodbye!")
