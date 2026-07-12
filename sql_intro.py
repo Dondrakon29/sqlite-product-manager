@@ -580,7 +580,13 @@ def run_app(connection, cursor):
             show_all_products(cursor)
     
         elif choice == "2":
-            category = input("Enter category: ").strip().capitalize()
+            category = get_non_empty_text("Enter category: ", "Category cannot be empty")
+
+            if category is None:
+                continue
+
+            category = category.capitalize()
+
             show_products_by_category(cursor, category)
 
         elif choice == "3":
@@ -642,7 +648,7 @@ def run_app(connection, cursor):
 
             if title is None:
                 continue
-            
+
             search_product_by_title(cursor, title)
 
         elif choice == "14":
