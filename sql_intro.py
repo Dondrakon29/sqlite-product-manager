@@ -638,7 +638,11 @@ def run_app(connection, cursor):
             show_products_by_price_range(cursor, min_price, max_price)    
         
         elif choice == "13":
-            title = input("Enter title: ").strip().capitalize()
+            title = get_non_empty_text("Enter title: ", "Title cannot be empty")
+
+            if title is None:
+                continue
+            
             search_product_by_title(cursor, title)
 
         elif choice == "14":
