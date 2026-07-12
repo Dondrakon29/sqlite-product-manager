@@ -621,14 +621,14 @@ def run_app(connection, cursor):
             show_products_by_max_price(cursor, max_price)
 
         elif choice == "12":
-            min_price = input("Enter min price: ").strip()
-            max_price = input("Enter max price: ").strip()
+            min_price = get_int_input("Enter min price: ")
 
-            try:
-                min_price = int(min_price)
-                max_price = int(max_price)
-            except ValueError:
-                print("Price must be a number")
+            if min_price is None:
+                continue
+
+            max_price = get_int_input("Enter max price: ")
+
+            if max_price is None:
                 continue
 
             if min_price > max_price:
