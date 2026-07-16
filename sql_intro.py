@@ -74,6 +74,19 @@ def get_int_input(prompt):
     except ValueError:
         print("Please enter a valid number")
         return None
+    
+
+def get_positive_int_input(prompt):
+    number = get_int_input(prompt)
+
+    if number is None:
+        return None
+    
+    if number <= 0:
+        print("Number must be greater than zero")
+        return None
+    
+    return number
 
 
 def get_non_empty_text(prompt, error_message):
@@ -92,13 +105,9 @@ def update_product_price(connection, cursor):
     if product_id is None:
         return
     
-    new_price = get_int_input("Enter new price: ")
+    new_price = get_positive_int_input("Enter new price: ")
 
     if new_price is None:
-        return
-    
-    if new_price <= 0:
-        print("Price must be greater than zero")
         return
     
     cursor.execute("""
@@ -491,13 +500,9 @@ def add_product(connection, cursor):
     if title is None:
         return
     
-    price = get_int_input("Enter price: ")
+    price = get_positive_int_input("Enter price: ")
 
     if price is None:
-        return
-
-    if price <= 0:
-        print("Price must be greater than zero")
         return
 
     category = get_non_empty_text("Enter category: ", "Category cannot be empty")
