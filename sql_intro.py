@@ -76,7 +76,7 @@ def show_all_products(cursor):
 
     products = cursor.fetchall()
 
-    print_products(products)
+    print_products_or_message(products, "No products found")
 
 
 def get_int_input(prompt):
@@ -432,7 +432,7 @@ def show_products_sorted_by_price(cursor):
 
     products = cursor.fetchall()
 
-    print_products(products)
+    print_products_or_message(products, "No products found")
 
 
 def show_products_sorted_by_price_desc(cursor):
@@ -444,7 +444,7 @@ def show_products_sorted_by_price_desc(cursor):
 
     products = cursor.fetchall()
 
-    print_products(products)
+    print_products_or_message(products, "No products found")
 
 
 def show_products_sorted_by_category_and_price(cursor):
@@ -456,7 +456,8 @@ def show_products_sorted_by_category_and_price(cursor):
 
     products = cursor.fetchall()
 
-    print_products(products)
+    print_products_or_message(products, "No products found")
+
 
 def add_product(connection, cursor):
     title = get_non_empty_text("Enter title: ", "Title cannot be empty")
@@ -484,6 +485,7 @@ def add_product(connection, cursor):
     connection.commit()
 
     print("Product added successfully")
+
 
 
 def delete_product(connection, cursor):
