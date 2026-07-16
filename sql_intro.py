@@ -37,6 +37,11 @@ def print_product(product):
     print(f"{product_id}. {title} | {price} | {category}")
 
 
+def print_products(products):
+    for product in products:
+        print_product(product)
+
+
 def show_category_stats(cursor):
     cursor.execute("""
     SELECT category, SUM(price) AS total_price, AVG(price) AS average_price
@@ -63,8 +68,7 @@ def show_all_products(cursor):
 
     products = cursor.fetchall()
 
-    for product in products:
-        print_product(product)
+    print_products(products)
 
 
 def get_int_input(prompt):
@@ -216,8 +220,7 @@ def show_products_by_category(cursor, category):
         print("No products in this category")
         return
 
-    for product in products:
-        print_product(product)
+    print_products(products)
 
 
 def show_expensive_products(cursor):
@@ -234,8 +237,7 @@ def show_expensive_products(cursor):
         print("No expensive products found")
         return
 
-    for product in products:
-        print_product(product)
+    print_products(products)
 
 
 def show_products_by_min_price(cursor, min_price):
@@ -252,8 +254,7 @@ def show_products_by_min_price(cursor, min_price):
         print("No products found")
         return
 
-    for product in products:
-        print_product(product)
+    print_products(products)
 
 
 def show_products_by_max_price(cursor, max_price):
@@ -270,8 +271,7 @@ def show_products_by_max_price(cursor, max_price):
         print("No products found")
         return
 
-    for product in products:
-        print_product(product)
+    print_products(products)
 
 
 def show_products_by_price_range(cursor, min_price, max_price):
@@ -288,8 +288,7 @@ def show_products_by_price_range(cursor, min_price, max_price):
         print("No products found")
         return
 
-    for product in products:
-        print_product(product)
+    print_products(products)
 
 
 def show_cheapest_product(cursor):
@@ -390,8 +389,7 @@ def search_product_by_title(cursor, title):
         print("No products found")
         return
     
-    for product in products:
-        print_product(product)
+    print_products(products)
 
 
 def search_products_by_title_part(cursor, title_part):
@@ -411,8 +409,7 @@ def search_products_by_title_part(cursor, title_part):
         print("No products found")
         return
 
-    for product in products:
-        print_product(product)
+    print_products(products)
 
 
 def search_products_by_category_part(cursor, category_part):
@@ -432,8 +429,7 @@ def search_products_by_category_part(cursor, category_part):
         print("No products found")
         return
 
-    for product in products:
-        print_product(product)
+    print_products(products)
 
 
 def search_products(cursor, search_text):
@@ -452,8 +448,7 @@ def search_products(cursor, search_text):
         print("No products found")
         return
 
-    for product in products:
-        print_product(product)
+    print_products(products)
 
 
 def show_products_sorted_by_price(cursor):
@@ -465,8 +460,7 @@ def show_products_sorted_by_price(cursor):
 
     products = cursor.fetchall()
 
-    for product in products:
-        print_product(product)
+    print_products(products)
 
 
 def show_products_sorted_by_price_desc(cursor):
@@ -478,8 +472,7 @@ def show_products_sorted_by_price_desc(cursor):
 
     products = cursor.fetchall()
 
-    for product in products:
-        print_product(product)
+    print_products(products)
 
 
 def show_products_sorted_by_category_and_price(cursor):
@@ -491,8 +484,7 @@ def show_products_sorted_by_category_and_price(cursor):
 
     products = cursor.fetchall()
 
-    for product in products:
-        print_product(product)
+    print_products(products)
 
 def add_product(connection, cursor):
     title = get_non_empty_text("Enter title: ", "Title cannot be empty")
