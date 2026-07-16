@@ -42,6 +42,14 @@ def print_products(products):
         print_product(product)
 
 
+def print_products_or_message(products, empty_message):
+    if not products:
+        print(empty_message)
+        return
+    
+    print_products(products)
+
+
 def show_category_stats(cursor):
     cursor.execute("""
     SELECT category, SUM(price) AS total_price, AVG(price) AS average_price
@@ -216,11 +224,7 @@ def show_products_by_category(cursor, category):
 
     products = cursor.fetchall()
 
-    if not products:
-        print("No products in this category")
-        return
-
-    print_products(products)
+    print_products_or_message(products, "No products in this category")
 
 
 def show_expensive_products(cursor):
@@ -233,11 +237,7 @@ def show_expensive_products(cursor):
 
     products = cursor.fetchall()
 
-    if not products:
-        print("No expensive products found")
-        return
-
-    print_products(products)
+    print_products_or_message(products, "No expensive products found")
 
 
 def show_products_by_min_price(cursor, min_price):
@@ -250,11 +250,7 @@ def show_products_by_min_price(cursor, min_price):
 
     products = cursor.fetchall()
 
-    if not products:
-        print("No products found")
-        return
-
-    print_products(products)
+    print_products_or_message(products, "No products found")
 
 
 def show_products_by_max_price(cursor, max_price):
@@ -267,11 +263,7 @@ def show_products_by_max_price(cursor, max_price):
 
     products = cursor.fetchall()
 
-    if not products:
-        print("No products found")
-        return
-
-    print_products(products)
+    print_products_or_message(products, "No products found")
 
 
 def show_products_by_price_range(cursor, min_price, max_price):
@@ -284,11 +276,7 @@ def show_products_by_price_range(cursor, min_price, max_price):
 
     products = cursor.fetchall()
 
-    if not products:
-        print("No products found")
-        return
-
-    print_products(products)
+    print_products_or_message(products, "No products found")
 
 
 def show_cheapest_product(cursor):
@@ -385,11 +373,7 @@ def search_product_by_title(cursor, title):
 
     products = cursor.fetchall()
 
-    if not products:
-        print("No products found")
-        return
-    
-    print_products(products)
+    print_products_or_message(products, "No products found")
 
 
 def search_products_by_title_part(cursor, title_part):
@@ -405,11 +389,7 @@ def search_products_by_title_part(cursor, title_part):
 
     products = cursor.fetchall()
 
-    if not products:
-        print("No products found")
-        return
-
-    print_products(products)
+    print_products_or_message(products, "No products found")
 
 
 def search_products_by_category_part(cursor, category_part):
@@ -425,11 +405,7 @@ def search_products_by_category_part(cursor, category_part):
 
     products = cursor.fetchall()
 
-    if not products:
-        print("No products found")
-        return
-
-    print_products(products)
+    print_products_or_message(products, "No products found")
 
 
 def search_products(cursor, search_text):
@@ -444,11 +420,7 @@ def search_products(cursor, search_text):
 
     products = cursor.fetchall()
 
-    if not products:
-        print("No products found")
-        return
-
-    print_products(products)
+    print_products_or_message(products, "No products found")
 
 
 def show_products_sorted_by_price(cursor):

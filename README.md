@@ -2,7 +2,7 @@
 
 Console application for managing products using Python and SQLite.
 
-The project allows you to store products in a local SQLite database, search and filter them, show statistics, add new products, and delete products by id.
+The project allows you to store products in a local SQLite database, search and filter them, show statistics, add, update, and delete products by ID.
 
 ## Features
 
@@ -27,12 +27,13 @@ The project allows you to store products in a local SQLite database, search and 
 - Sort products by price descending
 - Sort products by category and price
 - Add new product
-- Delete product by id
-- Save data between program runs
-- Reusable helper functions for validating integer and text input
+- Update product title by ID
 - Update product price by ID
 - Update product category by ID
-- Update product title by ID
+- Delete product by id
+- Save data between program runs
+- Validate user input 
+
 
 ## Technologies
 
@@ -42,7 +43,7 @@ The project allows you to store products in a local SQLite database, search and 
 
 ## What I practiced
 
-- Working with SQLite database
+- Working with a SQLite database
 - Creating tables with `CREATE TABLE`
 - Using `SELECT` queries
 - Filtering data with `WHERE`
@@ -57,23 +58,21 @@ The project allows you to store products in a local SQLite database, search and 
 - Searching text with `LIKE`
 - Using `AND` and `OR`
 - Adding data with `INSERT`
+- Updating data with `UPDATE`
 - Deleting data with `DELETE`
-- Using `AUTOINCREMENT` for product id
+- Practicing CRUD operations
+- Using `AUTOINCREMENT` for product IDs
 - Using SQL parameters with `?`
 - Using `fetchall()`
 - Using `fetchone()`
 - Using `commit()`
-- Checking deleted rows with `rowcount`
+- Checking affected rows with `rowcount`
 - Validating user input
 - Handling incorrect number input with `try/except`
 - Building a console menu
 - Splitting code into functions
 - Writing reusable helper functions
-- Validating user input
 - Refactoring repeated code
-- UPDATE
-- CRUD operations
-- Updating specific fields with SQL UPDATE
 
 ## How to run
 
